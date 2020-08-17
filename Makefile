@@ -42,7 +42,7 @@ ROMFS		     :=	romfs
 GFXBUILD	     :=	$(ROMFS)/gfx
 
 APP_TITLE        := Super Whack Mole
-APP_DESCRIPTION  := A classic Whack-A-Mole game with power-ups.
+APP_DESCRIPTION  := A classic Whac-A-Mole game with power-ups.
 APP_AUTHOR       := skibur
 ICON             := $(GRAPHICS)/SuperWhackMole.png
 
