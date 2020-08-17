@@ -1,2 +1,2 @@
 # Super Whack Mole
-A classic Whac-A-Mole game with power-ups.
+Whac-A-Mole with power-ups for the 3DS.
