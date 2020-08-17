@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 			break; // Break to Homebrew Menu
 
 		// Render Game Scene
-		game.render();
+		game.frameBegin();
 
 		// TODO
 
