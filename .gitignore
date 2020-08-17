@@ -33,3 +33,9 @@
 
 # Visual Studio cache/options directory
 .vs/
+
+# 3ds builds/directory
+*.3dsx
+*.elf
+*.smdh
+build/
