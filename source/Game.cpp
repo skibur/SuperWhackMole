@@ -31,9 +31,9 @@ void Game::init(void)
 }
 
 /**
- * Start sync drawing frame.
+ * Begin sync drawing frame.
  */
-void Game::render(void)
+void Game::frameBegin(void)
 {
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 }

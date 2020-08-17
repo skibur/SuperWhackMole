@@ -25,7 +25,7 @@ class Game
 {
 public:
 	void init(void);
-	void render(void);
+	void frameBegin(void);
 	void frameEnd(void);
 	void exit(void);
 };
