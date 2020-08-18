@@ -25,7 +25,10 @@ class Game
 {
 public:
 	void init(void);
+	bool isStartPressed(void);
 	void frameBegin(void);
+	void update(void);
+	void render(void);
 	void frameEnd(void);
 	void exit(void);
 };

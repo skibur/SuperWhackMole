@@ -26,18 +26,14 @@ int main(int argc, char* argv[])
 
 	while (aptMainLoop())
 	{
-		// Scan for user input
-		hidScanInput();
-
-		u32 kDown = hidKeysDown();
-
-		if (kDown & KEY_START)
+		if (game.isStartPressed())
 			break; // Break to Homebrew Menu
 
 		// Render Game Scene
 		game.frameBegin();
 
-		// TODO
+		game.update();
+		game.render();
 
 		game.frameEnd();
 	}

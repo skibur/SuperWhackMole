@@ -31,11 +31,47 @@ void Game::init(void)
 }
 
 /**
+ * Check if start was pressed.
+ * @return True or False.
+ */
+bool Game::isStartPressed(void)
+{
+	// Scan for user input
+	hidScanInput();
+
+	u32 kDown = hidKeysDown();
+
+	if (kDown & KEY_START)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+/**
  * Begin sync drawing frame.
  */
 void Game::frameBegin(void)
 {
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+}
+
+/**
+ * Update game data.
+ */
+void Game::update(void)
+{
+	// TODO
+}
+
+/**
+ * Render game objects.
+ */
+void Game::render(void)
+{
+	// TODO
 }
 
 /**
