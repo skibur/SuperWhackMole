@@ -28,6 +28,8 @@ void Game::init(void)
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
+
+	splashScene.init();
 }
 
 /**
@@ -71,7 +73,7 @@ void Game::update(void)
  */
 void Game::render(void)
 {
-	// TODO
+	splashScene.render();
 }
 
 /**
@@ -87,6 +89,7 @@ void Game::frameEnd(void)
  */
 void Game::exit(void)
 {
+	splashScene.exit();
 	C2D_Fini();
 	C3D_Fini();
 	romfsExit();

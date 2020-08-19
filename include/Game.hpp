@@ -20,10 +20,12 @@
 #define GAME_HPP
 
 #include <citro2d.h>
+#include "SplashScene.hpp"
 
 class Game
 {
 public:
+	SplashScene splashScene;
 	void init(void);
 	bool isStartPressed(void);
 	void frameBegin(void);
