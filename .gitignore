@@ -39,3 +39,4 @@
 *.elf
 *.smdh
 build/
+romfs/
