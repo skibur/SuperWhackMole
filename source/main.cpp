@@ -30,12 +30,8 @@ int main(int argc, char* argv[])
 			break; // Break to Homebrew Menu
 
 		// Render Game Scene
-		game.frameBegin();
-
 		game.update();
 		game.render();
-
-		game.frameEnd();
 	}
 
 	// Game cleanup
