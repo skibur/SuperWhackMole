@@ -28,6 +28,8 @@ void SplashScene::init(void)
 	
 	bottom_screen = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 	splashBottomImage.addImage("romfs:/gfx/splash_bottom.t3x", 0.0f, 0.0f);
+
+	this->render();
 }
 
 /**
@@ -43,13 +45,37 @@ void SplashScene::update(void)
  */
 void SplashScene::render(void)
 {
-	C2D_TargetClear(top_screen, COLOR_WHITE);
+	u64 start = osGetTime();
+
+	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+
+	C2D_TargetClear(top_screen, COLOR_BLACK);
 	C2D_SceneBegin(top_screen);
 	splashTopImage.draw();
 
 	C2D_TargetClear(bottom_screen, COLOR_BLACK);
 	C2D_SceneBegin(bottom_screen);
 	splashBottomImage.draw();
+
+	C3D_FrameEnd(0);
+
+	u8 count = 0;
+	while (count != 4)
+	{
+		u64 end = osGetTime();
+		count = (end - start)/1000;
+	}
+
+	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+
+	C2D_TargetClear(top_screen, COLOR_BLACK);
+	C2D_SceneBegin(top_screen);
+	C2D_TargetClear(bottom_screen, COLOR_BLACK);
+	C2D_SceneBegin(bottom_screen);
+
+	C3D_FrameEnd(0);
+
+	this->exit();
 }
 
 /**
