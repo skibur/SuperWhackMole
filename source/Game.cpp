@@ -73,7 +73,7 @@ void Game::update(void)
  */
 void Game::render(void)
 {
-	splashScene.render();
+	// TODO
 }
 
 /**
