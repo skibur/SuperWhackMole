@@ -1,0 +1,5 @@
+--atlas -f rgba8888 -z auto
+play_button.png
+about_button.png
+exit_button.png
+select_button.png
