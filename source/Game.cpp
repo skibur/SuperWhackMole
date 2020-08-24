@@ -30,20 +30,21 @@ void Game::init(void)
 	C2D_Prepare();
 
 	splashScene.init();
+	mainScene.init();
 }
 
 /**
  * Check if start was pressed.
- * @return True or False.
+ * @return true or false.
  */
-bool Game::isStartPressed(void)
+bool Game::isExit(void)
 {
 	// Scan for user input
 	hidScanInput();
 
 	u32 kDown = hidKeysDown();
 
-	if (kDown & KEY_START)
+	if (kDown & KEY_START || mainScene.isExit())
 	{
 		return true;
 	}
@@ -65,7 +66,7 @@ void Game::frameBegin(void)
  */
 void Game::update(void)
 {
-	// TODO
+	mainScene.update();
 }
 
 /**
@@ -73,7 +74,7 @@ void Game::update(void)
  */
 void Game::render(void)
 {
-	// TODO
+	mainScene.render();
 }
 
 /**
@@ -89,6 +90,7 @@ void Game::frameEnd(void)
  */
 void Game::exit(void)
 {
+	mainScene.exit();
 	C2D_Fini();
 	C3D_Fini();
 	romfsExit();

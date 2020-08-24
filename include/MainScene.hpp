@@ -16,26 +16,40 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111 - 1307  USA
  */
 
-#include "Game.hpp"
+#ifndef MAINSCENE_HPP
+#define MAINSCENE_HPP
 
-int main(int argc, char* argv[])
+#include <citro2d.h>
+#include "Scene.hpp"
+#include "colors.hpp"
+
+enum
 {
-	// Game Init
-	Game game;
-	game.init();
+	PLAY,
+	ABOUT,
+	EXIT,
+	SELECT
+};
 
-	while (aptMainLoop())
-	{
-		if (game.isExit())
-			break; // Break to Homebrew Menu
+class MainScene : public Scene
+{
+public:
+	C2D_Sprite play_button;
+	C2D_Sprite about_button;
+	C2D_Sprite exit_button;
+	C2D_Sprite select_button;
+	C2D_SpriteSheet spriteSheet;
+	C3D_RenderTarget* bottom_screen;
+	touchPosition touch;
+	bool set_exit = false;
+	bool play_select = false;
+	bool about_select = false;
+	bool exit_select = false;
+	void init();
+	bool isExit(void);
+	void update();
+	void render();
+	void exit();
+};
 
-		// Render Game Scene
-		game.update();
-		game.render();
-	}
-
-	// Game cleanup
-	game.exit();
-
-	return 0;
-}
+#endif

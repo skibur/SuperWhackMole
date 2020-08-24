@@ -21,13 +21,15 @@
 
 #include <citro2d.h>
 #include "SplashScene.hpp"
+#include "MainScene.hpp"
 
 class Game
 {
 public:
 	SplashScene splashScene;
+	MainScene mainScene;
 	void init(void);
-	bool isStartPressed(void);
+	bool isExit(void);
 	void frameBegin(void);
 	void update(void);
 	void render(void);
