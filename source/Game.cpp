@@ -17,80 +17,92 @@
  */
 
 #include "Game.hpp"
+#include "Scene.hpp"
 
 /**
- * Initialize the game.
+ * Constructor for the game.
  */
-void Game::init(void)
+Game::Game()
 {
 	romfsInit();
 	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
-
-	splashScene.init();
-	mainScene.init();
 }
 
 /**
- * Check if start was pressed.
- * @return true or false.
+ * Destructor for the game
  */
-bool Game::isExit(void)
+Game::~Game()
 {
-	// Scan for user input
-	hidScanInput();
+	while (!states.empty())
+		popState();
+}
 
-	u32 kDown = hidKeysDown();
+/**
+ * A pointer to the current scene in vector states
+ * @return Scene
+ */
+Scene* Game::CurrentState()
+{
+	if (states.empty())
+		return nullptr;
+	else
+		return states.back();
+}
 
-	if (kDown & KEY_START || mainScene.isExit())
+/**
+ * Main Game loop
+ */
+void Game::loop()
+{
+	while (aptMainLoop())
 	{
-		return true;
+		float dt = 10.0f;
+
+		//exception handling
+		if (CurrentState() == nullptr)
+			continue;
+
+		//get user input for current game state
+		CurrentState()->input();
+
+		//update anything neccessary
+		CurrentState()->update(dt);
+
+		//draw anything in the current game state
+		CurrentState()->render(dt);
+
+		if (CurrentState()->exit())
+			break;
 	}
-	else {
-		return false;
-	}
+	this->exitGame();
 }
 
 /**
- * Begin sync drawing frame.
+ * Push scene to vector state.
  */
-void Game::frameBegin(void)
+void Game::pushState(Scene* state)
 {
-	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+	states.push_back(state);
 }
 
 /**
- * Update game data.
+ * Pop scene from vector state.
  */
-void Game::update(void)
+void Game::popState()
 {
-	mainScene.update();
-}
-
-/**
- * Render game objects.
- */
-void Game::render(void)
-{
-	mainScene.render();
-}
-
-/**
- * End sync drawing frame.
- */
-void Game::frameEnd(void)
-{
-	C3D_FrameEnd(0);
+	states.back();
+	delete states.back();
+	states.pop_back();
 }
 
 /**
  * Exit game.
  */
-void Game::exit(void)
+void Game::exitGame(void)
 {
-	mainScene.exit();
 	C2D_Fini();
 	C3D_Fini();
 	romfsExit();
