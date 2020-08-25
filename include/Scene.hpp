@@ -19,14 +19,19 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
+#include "Game.hpp"
+
 class Scene
 {
 public:
+	Game* game;
+	virtual ~Scene() = default;
 	// Provide implementation for the following methods
-	virtual void init() = 0;
-	virtual void update() = 0;
-	virtual void render() = 0;
-	virtual void exit() = 0;
+	virtual void input() = 0;
+	virtual void update(const float dt) = 0;
+	virtual void render(const float dt) = 0;
+	virtual void cleanUp() = 0;
+	virtual bool exit() = 0;
 };
 
 #endif
