@@ -51,7 +51,6 @@ void Text::init(const char* str)
  *
  * @param str A string of text.
  */
-
 void Text::setup(const char* str)
 {
 	C2D_TextParse(&Text, textBuf, str);
