@@ -34,6 +34,8 @@ enum
 class MainScene : public Scene
 {
 public:
+	MainScene(Game* game);
+	virtual ~MainScene(void);
 	C2D_Sprite play_button;
 	C2D_Sprite about_button;
 	C2D_Sprite exit_button;
@@ -45,11 +47,14 @@ public:
 	bool play_select = false;
 	bool about_select = false;
 	bool exit_select = false;
-	void init();
-	bool isExit(void);
-	void update();
-	void render();
-	void exit();
+	bool exit_flag = false;
+	virtual void input();
+	virtual void update(const float dt);
+	virtual void render(const float dt);
+	virtual void cleanUp();
+	virtual bool exit(void);
+private:
+	void loadPlay();
 };
 
 #endif
