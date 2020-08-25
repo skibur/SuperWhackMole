@@ -17,25 +17,19 @@
  */
 
 #include "Game.hpp"
+#include "MainScene.hpp"
+#include "SplashScene.hpp"
 
 int main(int argc, char* argv[])
 {
-	// Game Init
 	Game game;
-	game.init();
 
-	while (aptMainLoop())
-	{
-		if (game.isExit())
-			break; // Break to Homebrew Menu
+	SplashScene splashScene;
+	splashScene.init();
 
-		// Render Game Scene
-		game.update();
-		game.render();
-	}
+	game.pushState(new MainScene(&game));
 
-	// Game cleanup
-	game.exit();
+	game.loop();
 
 	return 0;
 }
