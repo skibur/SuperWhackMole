@@ -19,22 +19,24 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <vector>
 #include <citro2d.h>
-#include "SplashScene.hpp"
-#include "MainScene.hpp"
+
+class Scene;
 
 class Game
 {
 public:
-	SplashScene splashScene;
-	MainScene mainScene;
-	void init(void);
-	bool isExit(void);
-	void frameBegin(void);
-	void update(void);
-	void render(void);
-	void frameEnd(void);
-	void exit(void);
+	Game();
+	~Game();
+	Scene* CurrentState();
+	bool exit = false;
+	void loop();
+	void pushState(Scene* state);
+	void popState();
+	void exitGame();
+private:
+	std::vector<Scene*> states;
 };
 
 #endif
