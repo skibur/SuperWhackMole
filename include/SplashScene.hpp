@@ -23,17 +23,17 @@
 #include "Image.hpp"
 #include "colors.hpp"
 
-class SplashScene : public Scene
+class SplashScene
 {
 public:
 	Image splashTopImage;
 	Image splashBottomImage;
 	C3D_RenderTarget* top_screen;
 	C3D_RenderTarget* bottom_screen;
-	void init();
-	void update();
-	void render();
-	void exit();
+	void init(void);
+	void update(void);
+	void render(void);
+	void exit(void);
 };
 
 #endif
