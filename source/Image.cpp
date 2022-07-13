@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Juan A. Sauceda <jasauceda@skibur.com>
+ * Copyright 2022 Juan A. Sauceda <jasauceda@skibur.com>
  *
  * This program is free software; you can redistribute itand /or modify
  * it under the terms of the GNU General Public License as published by
