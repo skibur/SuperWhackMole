@@ -41,7 +41,6 @@ public:
 	C2D_Sprite exit_button;
 	C2D_Sprite select_button;
 	C2D_SpriteSheet spriteSheet;
-	C3D_RenderTarget* bottom_screen;
 	touchPosition touch;
 	bool set_exit = false;
 	bool play_select = false;
