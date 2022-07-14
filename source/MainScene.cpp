@@ -26,7 +26,6 @@
 MainScene::MainScene(Game* game)
 {
 	this->game = game;
-	bottom_screen = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/main_scene.t3x");
 }
 
@@ -95,8 +94,8 @@ void MainScene::update(const float dt)
 void MainScene::render(const float dt)
 {
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(bottom_screen, COLOR_BLACK);
-	C2D_SceneBegin(bottom_screen);
+	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
+	C2D_SceneBegin(game->getBottom());
 
 	C2D_DrawSprite(&play_button);
 	C2D_DrawSprite(&about_button);
@@ -116,7 +115,6 @@ void MainScene::render(const float dt)
 		}
 		this->loadPlay();
 		play_select = false;
-		bottom_screen = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 	}
 
 	if (about_select)
@@ -140,7 +138,6 @@ void MainScene::render(const float dt)
 		}
 		this->cleanUp();
 		this->exit_flag = true;
-		//this->game->popState();
 	}
 	C3D_FrameEnd(0);
 }
