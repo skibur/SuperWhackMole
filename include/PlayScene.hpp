@@ -28,8 +28,6 @@ class PlayScene : public Scene
 public:
 	PlayScene(Game* game);
 	virtual ~PlayScene(void);
-	C3D_RenderTarget* top_screen;
-	C3D_RenderTarget* bottom_screen;
 	touchPosition touch;
 	bool exit_flag = false;
 	virtual void input();
