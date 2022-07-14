@@ -26,12 +26,11 @@ PlayScene::PlayScene(Game* game)
 {
 	this->game = game;
 	consoleInit(GFX_TOP, NULL);
-	bottom_screen = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 
 	// Clear screen
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(bottom_screen, COLOR_BLACK);
-	C2D_SceneBegin(bottom_screen);
+	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
+	C2D_SceneBegin(game->getBottom());
 	C3D_FrameEnd(0);
 }
 
@@ -56,10 +55,9 @@ void PlayScene::input()
 	if (kDown & KEY_START)
 	{
 		// Clear top screen
-		top_screen = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(top_screen, COLOR_BLACK);
-		C2D_SceneBegin(top_screen);
+		C2D_TargetClear(game->getTop(), COLOR_BLACK);
+		C2D_SceneBegin(game->getTop());
 		C3D_FrameEnd(0);
 
 		// Flush and swap framebuffers
