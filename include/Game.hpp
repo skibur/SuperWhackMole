@@ -30,12 +30,16 @@ public:
 	Game();
 	~Game();
 	Scene* CurrentState();
+	C3D_RenderTarget* getBottom();
+	C3D_RenderTarget* getTop();
 	bool exit = false;
 	void loop();
 	void pushState(Scene* state);
 	void popState();
 	void exitGame();
 private:
+	C3D_RenderTarget* bottom;
+	C3D_RenderTarget* top;
 	std::vector<Scene*> states;
 };
 
