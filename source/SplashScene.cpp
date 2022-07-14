@@ -23,6 +23,11 @@
   */
 void SplashScene::init(void)
 {
+	romfsInit();
+	gfxInitDefault();
+	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
+	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
+	C2D_Prepare();
 	top_screen = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 	splashTopImage.addImage("romfs:/gfx/splash_top.t3x", 0.0f, 0.0f);
 	
@@ -75,7 +80,19 @@ void SplashScene::render(void)
 
 	C3D_FrameEnd(0);
 
+	this->cleanUp();
 	this->exit();
+}
+
+/**
+ * Clean up game.
+ */
+void SplashScene::cleanUp()
+{
+	top_screen = nullptr;
+	bottom_screen = nullptr;
+	splashTopImage.exit();
+	splashBottomImage.exit();
 }
 
 /**
@@ -83,6 +100,8 @@ void SplashScene::render(void)
  */
 void SplashScene::exit(void)
 {
-	splashTopImage.exit();
-	splashBottomImage.exit();
+	C2D_Fini();
+	C3D_Fini();
+	romfsExit();
+	gfxExit();
 }
