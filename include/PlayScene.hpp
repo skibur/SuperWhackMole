@@ -21,6 +21,7 @@
 
 #include <citro2d.h>
 #include "Scene.hpp"
+#include "Image.hpp"
 #include "colors.hpp"
 
 class PlayScene : public Scene
@@ -28,6 +29,7 @@ class PlayScene : public Scene
 public:
 	PlayScene(Game* game);
 	virtual ~PlayScene(void);
+	Image playsceneBottomImage;
 	touchPosition touch;
 	bool exit_flag = false;
 	virtual void input();

@@ -32,6 +32,8 @@ PlayScene::PlayScene(Game* game)
 	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
 	C2D_SceneBegin(game->getBottom());
 	C3D_FrameEnd(0);
+
+	playsceneBottomImage.addImage("romfs:/gfx/playscene_bottom.t3x", 0.0f, 0.0f);
 }
 
 /**
@@ -66,6 +68,7 @@ void PlayScene::input()
 
 		//Wait for VBlank
 		gspWaitForVBlank();
+		this->cleanUp();
 		this->game->popState();
 	}
 }
@@ -84,6 +87,12 @@ void PlayScene::update(const float dt)
 void PlayScene::render(const float dt)
 {
 	printf("%03d, %03d\n", touch.px, touch.py);
+
+	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
+	C2D_SceneBegin(game->getBottom());
+	playsceneBottomImage.draw();
+	C3D_FrameEnd(0);
 }
 
 /**
@@ -91,7 +100,7 @@ void PlayScene::render(const float dt)
  */
 void PlayScene::cleanUp()
 {
-	// TODO
+	playsceneBottomImage.exit();
 }
 
 /**
