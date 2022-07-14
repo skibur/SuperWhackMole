@@ -22,13 +22,11 @@
 
 int main(int argc, char* argv[])
 {
-	Game game;
-
 	SplashScene splashScene;
 	splashScene.init();
 
+	Game game;
 	game.pushState(new MainScene(&game));
-
 	game.loop();
 
 	return 0;
