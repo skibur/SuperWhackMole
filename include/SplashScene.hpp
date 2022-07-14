@@ -33,6 +33,7 @@ public:
 	void init(void);
 	void update(void);
 	void render(void);
+	void cleanUp(void);
 	void exit(void);
 };
 
