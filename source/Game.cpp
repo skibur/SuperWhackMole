@@ -29,6 +29,9 @@ Game::Game()
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
+
+	top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
+	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 }
 
 /**
@@ -78,6 +81,22 @@ void Game::loop()
 			break;
 	}
 	this->exitGame();
+}
+
+/**
+ * Get botton screen.
+ */
+C3D_RenderTarget* Game::getBottom()
+{
+	return bottom;
+}
+
+/**
+ * Get top screen.
+ */
+C3D_RenderTarget* Game::getTop()
+{
+	return top;
 }
 
 /**
