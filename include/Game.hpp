@@ -19,8 +19,9 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include <vector>
 #include <citro2d.h>
+#include <cstdlib>
+#include <vector>
 
 class Scene;
 

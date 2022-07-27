@@ -29,5 +29,5 @@ int main(int argc, char* argv[])
 	game.pushState(new MainScene(&game));
 	game.loop();
 
-	return 0;
+	return EXIT_SUCCESS;
 }
