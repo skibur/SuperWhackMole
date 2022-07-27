@@ -27,6 +27,8 @@ MainScene::MainScene(Game* game)
 {
 	this->game = game;
 	spriteSheet = C2D_SpriteSheetLoad("romfs:/gfx/main_scene.t3x");
+	menuTopImage.addImage("romfs:/gfx/menu_top.t3x", 0.0f, 0.0f);
+	menuBottomImage.addImage("romfs:/gfx/menu_bottom.t3x", 0.0f, 0.0f);
 }
 
 /**
@@ -94,8 +96,13 @@ void MainScene::update(const float dt)
 void MainScene::render(const float dt)
 {
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+	C2D_TargetClear(game->getTop(), COLOR_BLACK);
+	C2D_SceneBegin(game->getTop());
+	menuTopImage.draw();
+
 	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
 	C2D_SceneBegin(game->getBottom());
+	menuBottomImage.draw();
 
 	C2D_DrawSprite(&play_button);
 	C2D_DrawSprite(&about_button);
@@ -157,6 +164,8 @@ bool MainScene::exit()
 void MainScene::cleanUp(void)
 {
 	C2D_SpriteSheetFree(spriteSheet);
+	menuTopImage.exit();
+	menuBottomImage.exit();
 }
 
 /**

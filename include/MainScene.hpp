@@ -21,6 +21,7 @@
 
 #include <citro2d.h>
 #include "Scene.hpp"
+#include "Image.hpp"
 #include "colors.hpp"
 
 enum
@@ -36,6 +37,8 @@ class MainScene : public Scene
 public:
 	MainScene(Game* game);
 	virtual ~MainScene(void);
+	Image menuTopImage;
+	Image menuBottomImage;
 	C2D_Sprite play_button;
 	C2D_Sprite about_button;
 	C2D_Sprite exit_button;
