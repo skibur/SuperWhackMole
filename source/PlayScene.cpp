@@ -25,14 +25,7 @@
 PlayScene::PlayScene(Game* game)
 {
 	this->game = game;
-	consoleInit(GFX_TOP, NULL);
-
-	// Clear screen
-	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
-	C2D_SceneBegin(game->getBottom());
-	C3D_FrameEnd(0);
-
+	playsceneTopImage.addImage("romfs:/gfx/playscene_top.t3x", 0.0f, 0.0f);
 	playsceneBottomImage.addImage("romfs:/gfx/playscene_bottom.t3x", 0.0f, 0.0f);
 }
 
@@ -56,18 +49,13 @@ void PlayScene::input()
 
 	if (kDown & KEY_START)
 	{
-		// Clear top screen
-		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(game->getTop(), COLOR_BLACK);
-		C2D_SceneBegin(game->getTop());
-		C3D_FrameEnd(0);
-
-		// Flush and swap framebuffers
-		gfxFlushBuffers();
-		gfxSwapBuffers();
-
-		//Wait for VBlank
-		gspWaitForVBlank();
+		u64 start = osGetTime();
+		u8 count = 0;
+		while (count != 1)
+		{
+			u64 end = osGetTime();
+			count = (end - start) / 1000;
+		}
 		this->cleanUp();
 		this->game->popState();
 	}
@@ -86,10 +74,9 @@ void PlayScene::update(const float dt)
  */
 void PlayScene::render(const float dt)
 {
-	printf("%03d, %03d\n", touch.px, touch.py);
-
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-	C2D_TargetClear(game->getBottom(), COLOR_BLACK);
+	C2D_SceneBegin(game->getTop());
+	playsceneTopImage.draw();
 	C2D_SceneBegin(game->getBottom());
 	playsceneBottomImage.draw();
 	C3D_FrameEnd(0);
@@ -100,6 +87,7 @@ void PlayScene::render(const float dt)
  */
 void PlayScene::cleanUp()
 {
+	playsceneTopImage.exit();
 	playsceneBottomImage.exit();
 }
 

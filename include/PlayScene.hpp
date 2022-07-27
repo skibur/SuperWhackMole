@@ -29,6 +29,7 @@ class PlayScene : public Scene
 public:
 	PlayScene(Game* game);
 	virtual ~PlayScene(void);
+	Image playsceneTopImage;
 	Image playsceneBottomImage;
 	touchPosition touch;
 	bool exit_flag = false;
