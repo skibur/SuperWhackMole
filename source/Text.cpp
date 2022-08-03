@@ -16,6 +16,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111 - 1307  USA
  */
 
+#include <string>
 #include "Text.hpp"
 
  /**
@@ -46,14 +47,19 @@ void Text::init(const char* str)
 	C2D_TextOptimize(&Text);
 }
 
+void Text::clearText()
+{
+	C2D_TextBufClear(textBuf);
+}
+
 /**
  * Initialize the game.
  *
  * @param str A string of text.
  */
-void Text::setup(const char* str)
+void Text::setup(string str)
 {
-	C2D_TextParse(&Text, textBuf, str);
+	C2D_TextParse(&Text, textBuf, str.c_str());
 	C2D_TextOptimize(&Text);
 }
 

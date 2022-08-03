@@ -19,12 +19,14 @@
 #ifndef TEXT_HPP
 #define TEXT_HPP
 
+#include <string>
 #include <vector>
 #include <citro2d.h>
 
 #define BATCH true
 
 using std::vector;
+using std::string;
 
 typedef struct
 {
@@ -48,7 +50,8 @@ public:
 	void init(void);
 	void init(bool);
 	void init(const char* str);
-	void setup(const char* str);
+	void clearText();
+	void setup(string str);
 	void addText(const char* str, float x_pos, float y_pos, float width, float height, u32 color);
 	void draw(float x_pos, float y_pos, float width, float height);
 	void drawAll(void);
