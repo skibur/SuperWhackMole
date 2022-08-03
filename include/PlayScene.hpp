@@ -20,9 +20,14 @@
 #define PLAYSCENE_HPP
 
 #include <citro2d.h>
+#include "Mole.hpp"
 #include "Scene.hpp"
 #include "Image.hpp"
 #include "colors.hpp"
+#include "text.hpp"
+#include <vector>
+
+using std::vector;
 
 class PlayScene : public Scene
 {
@@ -33,6 +38,8 @@ public:
 	Image playsceneBottomImage;
 	touchPosition touch;
 	bool exit_flag = false;
+	Text cords;
+	vector<Mole> Moles;
 	virtual void input();
 	virtual void update(const float dt);
 	virtual void render(const float dt);
