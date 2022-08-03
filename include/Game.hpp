@@ -23,6 +23,8 @@
 #include <cstdlib>
 #include <vector>
 
+using std::vector;
+
 class Scene;
 
 class Game
@@ -41,7 +43,7 @@ public:
 private:
 	C3D_RenderTarget* bottom;
 	C3D_RenderTarget* top;
-	std::vector<Scene*> states;
+	vector<Scene*> states;
 };
 
 #endif
